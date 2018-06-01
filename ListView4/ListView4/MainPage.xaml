@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ListView4"
+             x:Class="ListView4.MainPage">
+
+    <!-- pull screen down to refresh ListView-->
+    <ListView x:Name="myListView" IsPullToRefreshEnabled="True" Refreshing="myListView_Refreshing">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ImageCell Text="{Binding Name}" Detail="{Binding Status}" ImageSource="{Binding ImageUrl}">
+                    <!--use Property Element Syntax to initialize one of the properties of TextCell-->
+                    <ImageCell.ContextActions>
+                        <!-- {Binding .} sets binding to whole contact object to have access to all properties -->
+                        <MenuItem Text="Call" Clicked="Call_Clicked" CommandParameter="{Binding .}"/>
+                        <!--IsDestructive=True makes item RED-->
+                        <MenuItem Text="Delete" Clicked="Delete_Clicked" IsDestructive="True" CommandParameter="{Binding .}"/>
+                    </ImageCell.ContextActions>
+                </ImageCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
